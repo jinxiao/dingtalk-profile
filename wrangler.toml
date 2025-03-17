@@ -1,0 +1,5 @@
+name = "dingtalk-profile"
+main = "src/worker.js"
+compatibility_date = "2025-03-16"
+workers_dev = true
+preview_urls = false
