@@ -9,6 +9,8 @@
  */
 
 
+import { pinyin } from "pinyin-pro";
+
 export default {
   async fetch(request) {
       try {
@@ -33,10 +35,17 @@ export default {
           }
 
           const userInfo = await response.json();
+          let nickname = userInfo.nick;
+
+          // 如果 nickname 包含中文字符，则转换为拼音
+          if (/[\u4e00-\u9fa5]/.test(nickname)) {
+              nickname = pinyin(nickname, { toneType: 'none', type: 'array' }).join('').toLowerCase();
+          }
+
           const result = {
               sub: userInfo.openId,
-              nickname: userInfo.nick,
-              name: userInfo.nick,
+              nickname: nickname,
+              name: nickname,
               email: userInfo.email,
           };
 
