@@ -45,6 +45,7 @@ export default {
           const result = {
               sub: userInfo.openId,
               nickname: nickname,
+              preferred_username: userInfo.mobile,
               name: nickname,
               email: userInfo.email,
           };
